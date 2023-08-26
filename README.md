@@ -4,7 +4,7 @@
 
 
 ```
-git clone https://github.com/0hq/macrocosm-terminal/
+git clone https://github.com/macrocosmcorp/macrocosm-terminal.git
 cd macrocosm-terminal
 npm install
 npm install -g
