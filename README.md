@@ -8,3 +8,4 @@ npm install
 npm install -g # Registers the 'macrocosm' command globally (run it anywhere)!
 macrocosm
 ```
+```Please visit data.macrocosm.so for original web version.```
