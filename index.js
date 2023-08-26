@@ -2,8 +2,8 @@
 
 const axios = require("axios");
 const blessed = require("blessed");
-const { saveToCache, readFromCache } = require("./cacheUtils");
-const { formatData, getYearProgress, fmt, ex, fmt_prct, fmt_pct } = require("./helpers");
+const { saveToCache, readFromCache } = require("./core/cacheUtils");
+const { formatData, getYearProgress, fmt, ex, fmt_prct, fmt_pct } = require("./core/helpers");
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // Cache for 7 days
 
