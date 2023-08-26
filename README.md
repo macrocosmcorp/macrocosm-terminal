@@ -1,6 +1,7 @@
 ### Macrocosm Dashboard (Terminal)
 
-![image](https://github.com/0hq/macrocosm-terminal/assets/30643741/d4da795c-518b-417c-ba15-afcaf0f42710)
+![image](https://github.com/macrocosmcorp/macrocosm-terminal/assets/30643741/ee170281-b539-4100-b426-42b836657360)
+
 
 ```
 git clone https://github.com/0hq/macrocosm-terminal/
