@@ -4,10 +4,7 @@
 
 
 ```
-git clone https://github.com/macrocosmcorp/macrocosm-terminal.git
-cd macrocosm-terminal
-npm install
-npm install -g
+npm install -g macrocosm-terminal
 macrocosm
 ```
 ```Please visit data.macrocosm.so for original web version.```
