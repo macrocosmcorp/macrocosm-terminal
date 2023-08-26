@@ -41,10 +41,17 @@ async function fetchAllData() {
   }
 
   const year = new Date().getFullYear();
-  const projections_large = await axios.get("https://data.macrocosm.so/api/v0/projections-large");
-  const all_time_humans = await axios.get(`https://data.macrocosm.so/api/v1/all-time-human-population/${year}`);
-  const population_per_location = await axios.get("https://data.macrocosm.so/api/v1/UN/all-population-data");
-  const global_energy = await axios.get(`https://data.macrocosm.so/api/v1/energy/projection/${year}`);
+  const [
+    projections_large,
+    all_time_humans,
+    population_per_location,
+    global_energy
+  ] = await Promise.all([
+    axios.get("https://data.macrocosm.so/api/v0/projections-large"),
+    axios.get(`https://data.macrocosm.so/api/v1/all-time-human-population/${year}`),
+    axios.get("https://data.macrocosm.so/api/v1/UN/all-population-data"),
+    axios.get(`https://data.macrocosm.so/api/v1/energy/projection/${year}`),
+  ]);
 
   const result = {
     ...projections_large.data,
