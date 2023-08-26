@@ -29,6 +29,10 @@ screen.key(["q", "C-c"], function (ch, key) {
   return process.exit(0);
 });
 
+screen.key(["right", "left"], function (ch, key) {
+  pageNum = (pageNum + 1) % 2;
+});
+
 async function fetchAllData() {
   const cachedData = readFromCache();
 
@@ -54,12 +58,14 @@ async function fetchAllData() {
   return result;
 }
 
+let pageNum = 0;
+
 async function displayStats() {
   const rawData = await fetchAllData();
   const projections = formatData(rawData);
   const yearProgress = getYearProgress();
 
-  lines = [
+  page1 = [
     `{bold}{#7900fa-fg}The Anthropocene started{/#7900fa-fg} {#7900fa-fg}1${new Date().getFullYear()}{/#7900fa-fg} {#7900fa-fg}years ago.{/#7900fa-fg}{/bold}`,
     // `{#ffe800-fg}Year Progress:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt_pct(yearProgress * 100, 7)}{/#e60f00-fg}{/bold}`,
     `{#ffe800-fg}Total World Population:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt(
@@ -87,6 +93,31 @@ async function displayStats() {
       8
     )}{/#e60f00-fg}{/bold} {#ffe800-fg}quadrillion BTU.{/#ffe800-fg}`,
   ];
+
+  page2 = [
+    `{bold}{#7900fa-fg}We have {/#7900fa-fg}{#7900fa-fg}1${
+      25000 - new Date().getFullYear()
+    }{/#7900fa-fg} {#7900fa-fg}years before the next ice age.{/#7900fa-fg}{/bold}`,
+    `{#ffe800-fg}Year Progress:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt_pct(yearProgress * 100, 7)}{/#e60f00-fg}{/bold} {#ffe800-fg}of the year.{/#ffe800-fg}`,
+    `{#ffe800-fg}Humans Births:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt(
+      ex(0, projections.births.nextYear, yearProgress),
+      2
+    )}{/#e60f00-fg}{/bold} {#ffe800-fg}born this year.{/#ffe800-fg}`,
+    `{#ffe800-fg}Humans Deaths:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt(
+      ex(0, projections.deaths.nextYear, yearProgress),
+      2
+    )}{/#e60f00-fg}{/bold} {#ffe800-fg}died this year.{/#ffe800-fg}`,
+    `{#ffe800-fg}Energy Consumption:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt(
+      ex(0, rawData.GlobalEnergy.nextCnsmValue, yearProgress),
+      8
+    )}{/#e60f00-fg}{/bold} {#ffe800-fg}terawatt-hours spent.{/#ffe800-fg}`,
+    `{#ffe800-fg}Energy Production:{/#ffe800-fg} {bold}{#e60f00-fg}${fmt(
+      ex(0, rawData.GlobalEnergy.nextPgdisValue, yearProgress),
+      8
+    )}{/#e60f00-fg}{/bold} {#ffe800-fg}quadrillion BTU created.{/#ffe800-fg}`,
+  ];
+
+  const lines = pageNum == 0 ? page1 : page2;
 
   // Remove the formatting tags for proper calculation
   const strippedLines = lines.map((line) => line.replace(/{.*?}/g, ""));
