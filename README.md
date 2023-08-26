@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/0hq/macrocosm-terminal/
 npm install
-npm install -g # Registers the 'macrocosm' command globally (run it anywhere)!
+npm install -g # Registers the 'macrocosm' command globally to run it anywhere!
 macrocosm
 ```
 ```Please visit data.macrocosm.so for original web version.```
