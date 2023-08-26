@@ -5,6 +5,7 @@
 
 ```
 git clone https://github.com/0hq/macrocosm-terminal/
+cd macrocosm-terminal
 npm install
 npm install -g
 macrocosm
