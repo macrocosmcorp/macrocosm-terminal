@@ -60,7 +60,28 @@ async function fetchAllData() {
 
 let pageNum = 0;
 
+function loadingScreen() {
+  const message = "Loading...";
+  // Calculate the width and height of the content
+  const contentWidth = message.length;
+  const contentHeight = 1;
+
+  // Calculate the top and left positions to center the box
+  const top = Math.max(0, Math.floor((screen.height - contentHeight) / 2));
+  const left = Math.max(0, Math.floor((screen.width - contentWidth) / 2));
+
+  box.setContent(message);
+  box.width = contentWidth + 4; // Added some padding
+  box.height = contentHeight + 4; // Added some padding
+  box.top = top;
+  box.left = left;
+
+  // Draw screen
+  screen.render();
+}
+
 async function displayStats() {
+  loadingScreen();
   const rawData = await fetchAllData();
   const projections = formatData(rawData);
   const yearProgress = getYearProgress();
